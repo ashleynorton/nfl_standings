@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby 
+
+NflStandings::CLI.new.call
+
