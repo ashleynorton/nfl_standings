@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby 
 
+require "./lib/nfl_standings"
+
 NflStandings::CLI.new.call
 

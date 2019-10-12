@@ -1,6 +1,3 @@
-require "nfl_standings/version"
+require_relative "./nfl_standings/version"
+require_relative "./nfl_standings/cli"
 
-module NflStandings
-  class Error < StandardError; end
-  # Your code goes here...
-end
