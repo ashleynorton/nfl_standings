@@ -9,23 +9,28 @@ class NflStandings::CLI
   def list_conferences
     puts "The NFL Standings as of today are:"
     #Display 2 options for NFL conferences 
-    puts "\n    1. American Football Conference (AFC)\n
-    2. National Football Conference (NFC)"
+    puts "\n    1. All NFL Team Standings\n\n    2. American Football Conference (AFC)\n
+    3. National Football Conference (NFC)"
   end 
   
   
   def menu
     input = nil 
     while input != "exit"
-      puts "\nClick the appropriate number to view the conference standings, type list to pick a different conference again, or type exit\n\n"
+      puts "\nClick the appropriate menu number to view the standings, type list to go back to the menu, or type exit\n\n"
       input = gets.strip.downcase
       case input
       when "1"
-        puts "\nAFC Standings:\n1. Houston Texans -- Wins: 1 Losses: 3 Ties: 0\n2. Miami Dolphins -- Wins: 3 Losses: 1 Ties: 0"
+        puts "\n    1. Atlanta Falcons -- Wins: 1 Losses: 3 Ties: 0\n    2. Houston Texans -- Wins: 1 Losses: 3 Ties: 0\n    3. Miami Dolphins -- Wins: 3 Losses: 1 Ties: 0\n    4. Seattle Seahawks -- Wins: 3 Losses: 1 Ties: 0"
       when "2"
+        puts "\nAFC Standings:\n1. Houston Texans -- Wins: 1 Losses: 3 Ties: 0\n2. Miami Dolphins -- Wins: 3 Losses: 1 Ties: 0"
+      when "3"
         puts "\nNFC Standings:\n1. Atlanta Falcons -- Wins: 1 Losses: 3 Ties: 0\n2. Seattle Seahawks -- Wins: 3 Losses: 1 Ties: 0"
       when "list"
+        puts "\n"
         list_conferences
+      else 
+        puts "\nThat's not an option. Type list to return to the menu or type exit."
       end
     end 
   end 
