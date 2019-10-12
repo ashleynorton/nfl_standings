@@ -17,13 +17,13 @@ class NflStandings::CLI
   def menu
     input = nil 
     while input != "exit"
-      puts "\nClick the appropriate number to view the conference standings, type list to pick a different conference again, or type exit"
+      puts "\nClick the appropriate number to view the conference standings, type list to pick a different conference again, or type exit\n\n"
       input = gets.strip.downcase
       case input
       when "1"
-        puts "AFC Standings:\n1. Houston Texans -- Wins: 1 Losses: 3 Ties: 0\n2. Miami Dolphins -- Wins: 3 Losses: 1 Ties: 0"
+        puts "\nAFC Standings:\n1. Houston Texans -- Wins: 1 Losses: 3 Ties: 0\n2. Miami Dolphins -- Wins: 3 Losses: 1 Ties: 0"
       when "2"
-        puts "NFC Standings:\n1. Atlanta Falcons -- Wins: 1 Losses: 3 Ties: 0\n2. Seattle Seahawks -- Wins: 3 Losses: 1 Ties: 0"
+        puts "\nNFC Standings:\n1. Atlanta Falcons -- Wins: 1 Losses: 3 Ties: 0\n2. Seattle Seahawks -- Wins: 3 Losses: 1 Ties: 0"
       when "list"
         list_conferences
       end
@@ -31,6 +31,6 @@ class NflStandings::CLI
   end 
   
   def goodbye
-    puts "Check back tomorrow for the latest updates!"
+    puts "\nCheck back tomorrow for the latest updates!"
   end 
 end 
