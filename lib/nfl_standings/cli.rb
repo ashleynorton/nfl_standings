@@ -1,4 +1,6 @@
-class NflStandings::CLI
+require_relative './lib/nfl_standings.rb'
+
+class CLI
 
   def call
     list_conferences
@@ -10,8 +12,10 @@ class NflStandings::CLI
     puts ""
     puts "The NFL Standings as of today are:"
     #Display 2 options for NFL conferences
-    puts "\n    1. All NFL Team Standings\n\n    2. American Football Conference (AFC)\n
-    3. National Football Conference (NFC)"
+    puts ""
+    puts "1. All NFL Team Standings"
+    puts "2. American Football Conference (AFC)"
+    puts "3. National Football Conference (NFC)"
   end
 
 
@@ -49,7 +53,7 @@ class NflStandings::CLI
     puts "---------- All NFL Team Standings ----------"
     puts ""
 
-    NflStandings::Standing.all_teams.each_with_index { |standing, index|
+    Standing.all_teams.each_with_index { |standing, index|
       puts "#{index}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties}} "
     }
   end
@@ -58,8 +62,8 @@ class NflStandings::CLI
     puts ""
     puts "---------- AFC Standings ----------"
     puts ""
-
-    NflStandings::Standing.all_afc_teams.each_with_index { |standing, index|
+    #change to all_afc_teams
+    Standing.all_teams.each_with_index { |standing, index|
       puts "#{index}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties}} "
     }
   end
@@ -68,12 +72,11 @@ class NflStandings::CLI
     puts ""
     puts "---------- NFC Standings ----------"
     puts ""
-
-    NflStandings::Standing.all_nfc_teams.each_with_index { |standing, index|
+    #change to all_nfc_teams
+    self.create_standings
+    Standing.all_teams.each_with_index { |standing, index|
       puts "#{index}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties}} "
     }
   end
-
-
 
 end

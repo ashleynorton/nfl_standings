@@ -1,6 +1,5 @@
-#!/usr/bin/env ruby 
+#!/usr/bin/env ruby
 
-require "./lib/nfl_standings"
+require_relative '../lib/nfl_standings'
 
-NflStandings::CLI.new.call
-
+CLI.new.call
