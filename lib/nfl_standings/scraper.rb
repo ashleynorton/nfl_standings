@@ -7,7 +7,7 @@ require_relative './standing.rb'
 class NflStandings::Scraper
 
   def get_page
-    doc = Nokogiri::HTML(open("https://www.espn.com/nfl/standings"))
+    Nokogiri::HTML(open("https://www.espn.com/nfl/standings"))
   end
 
   def get_standings
@@ -15,12 +15,8 @@ class NflStandings::Scraper
   end
 
   def create_standings
-    self.get_standings.each do |each_standing|
-      standing = NflStandings::Standing.new
-      standing.team_name = tea
-      wins
-      losses
-      ties
+    get_standings.each do |standing|
+      NflStandings::Standing.new_from_index_page(standing)
     end
   end
 

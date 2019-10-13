@@ -6,6 +6,7 @@ require_relative './scraper.rb'
 class NflStandings::CLI
 
   def call
+    NflStandings::Scraper.new.create_standings
     list_conferences
     menu
     goodbye
