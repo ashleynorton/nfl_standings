@@ -22,7 +22,13 @@ There are 2...one for AFC and one for NFC  spelled out listed under class (".Tab
 
 
 This got me this:
+
 doc.css(".ResponsiveTable").css(".hide-mobile").css("a").text
+
+OR 
+
+doc.css(".ResponsiveTable").css(".hide-mobile").text (provides the same thing)
+
 => "New England PatriotsBuffalo BillsNew York JetsMiami DolphinsBaltimore RavensCleveland BrownsPittsburgh SteelersCincinnati BengalsHouston TexansIndianapolisColtsJacksonville JaguarsTennessee TitansKansas City ChiefsOakland RaidersLos Angeles ChargersDenver BroncosPhiladelphia EaglesDallas CowboysNew York GiantsWashington RedskinsGreen Bay PackersDetroit LionsChicago BearsMinnesota VikingsNew Orleans SaintsCarolina PanthersTampa Bay BuccaneersAtlanta FalconsSan Francisco 49ersSeattle SeahawksLos Angeles RamsArizona Cardinals"
 
 This got me this:
@@ -48,6 +54,10 @@ pry(#<Scraper>)> doc.css(".ResponsiveTable").css(".hide-mobile").css("a")[0].tex
 
 
 
+Wins (Possible Selectors):
+
+".Table_TD", ".stat-cell"
+
 
 
 
@@ -58,11 +68,11 @@ doc = Nokogiri::HTML(open("https://www.espn.com/nfl/standings"))
 
 The collection of teams:
 
-
+doc.css(".ResponsiveTable").css(".hide-mobile").text
 
 The name of an individual team:
 
-
+doc.css(".ResponsiveTable").css(".hide-mobile").css("a").first.text
 
 The wins of an individual team:
 
