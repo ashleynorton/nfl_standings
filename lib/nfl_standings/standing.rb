@@ -1,0 +1,3 @@
+class NflStandings::Standing 
+  
+end 
