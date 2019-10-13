@@ -1,8 +1,4 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
-
-class Scraper
+class NflStandings::Scraper
   
   def get_page
     doc = Nokogiri::HTML(open("https://www.espn.com/nfl/standings"))
