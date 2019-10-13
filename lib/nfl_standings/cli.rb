@@ -7,6 +7,7 @@ class NflStandings::CLI
   end
 
   def list_conferences
+    puts ""
     puts "The NFL Standings as of today are:"
     #Display 2 options for NFL conferences
     puts "\n    1. All NFL Team Standings\n\n    2. American Football Conference (AFC)\n
@@ -21,15 +22,16 @@ class NflStandings::CLI
       puts "Click the appropriate menu number to view the standings, type list to go back to the menu, or type exit\n\n"
       input = gets.strip.downcase
 
+
+
       case input
       when "1"
-        puts "\n    1. Atlanta Falcons -- Wins: 1 Losses: 3 Ties: 0\n    2. Houston Texans -- Wins: 1 Losses: 3 Ties: 0\n    3. Miami Dolphins -- Wins: 3 Losses: 1 Ties: 0\n    4. Seattle Seahawks -- Wins: 3 Losses: 1 Ties: 0"
+        print_all_standings
       when "2"
-        puts "\nAFC Standings:\n1. Houston Texans -- Wins: 1 Losses: 3 Ties: 0\n2. Miami Dolphins -- Wins: 3 Losses: 1 Ties: 0"
+        print_afc_standings
       when "3"
-        puts "\nNFC Standings:\n1. Atlanta Falcons -- Wins: 1 Losses: 3 Ties: 0\n2. Seattle Seahawks -- Wins: 3 Losses: 1 Ties: 0"
+        print_nfc_standings
       when "list"
-        puts "\n"
         list_conferences
       else
         puts "\nThat's not an option. Type list to return to the menu or type exit."
@@ -41,26 +43,35 @@ class NflStandings::CLI
     puts "\nCheck back tomorrow for the latest updates!"
   end
 
-  def print_standings
-    puts
-  end
 
   def print_all_standings
     puts ""
     puts "---------- All NFL Team Standings ----------"
     puts ""
+
+    NflStandings::Standing.all_teams.each_with_index { |standing, index|
+      puts "#{index}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties}} "
+    }
   end
 
   def print_afc_standings
     puts ""
     puts "---------- AFC Standings ----------"
     puts ""
+
+    NflStandings::Standing.all_afc_teams.each_with_index { |standing, index|
+      puts "#{index}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties}} "
+    }
   end
 
   def print_nfc_standings
     puts ""
     puts "---------- NFC Standings ----------"
     puts ""
+
+    NflStandings::Standing.all_nfc_teams.each_with_index { |standing, index|
+      puts "#{index}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties}} "
+    }
   end
 
 
