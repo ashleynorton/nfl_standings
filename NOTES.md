@@ -46,3 +46,33 @@ pry(#<Scraper>)> doc.css(".ResponsiveTable").css(".hide-mobile").css("a")[0].tex
 [10] pry(#<Scraper>)> doc.css(".ResponsiveTable").css(".hide-mobile").css("a")[5].text
 => "Cleveland Browns"
 
+
+
+
+
+
+--------------------------------------------------------
+The page itself:
+
+doc = Nokogiri::HTML(open("https://www.espn.com/nfl/standings"))
+
+The collection of teams:
+
+
+
+The name of an individual team:
+
+
+
+The wins of an individual team:
+
+
+
+The losses of an individual team:
+
+
+
+The ties of an individual team:
+
+
+
