@@ -1,6 +1,9 @@
-require_relative './lib/nfl_standings.rb'
+require 'nokogiri'
+require 'open-uri'
+require_relative './standing.rb'
+require_relative './scraper.rb'
 
-class CLI
+class NflStandings::CLI
 
   def call
     list_conferences
@@ -14,8 +17,8 @@ class CLI
     #Display 2 options for NFL conferences
     puts ""
     puts "1. All NFL Team Standings"
-    puts "2. American Football Conference (AFC)"
-    puts "3. National Football Conference (NFC)"
+    puts "2. American Football Conference Standings (AFC)"
+    puts "3. National Football Conference Standings (NFC)"
   end
 
 
@@ -53,7 +56,7 @@ class CLI
     puts "---------- All NFL Team Standings ----------"
     puts ""
 
-    Standing.all_teams.each_with_index { |standing, index|
+    NflStandings::Standing.all_teams.each_with_index { |standing, index|
       puts "#{index}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties}} "
     }
   end
@@ -63,7 +66,7 @@ class CLI
     puts "---------- AFC Standings ----------"
     puts ""
     #change to all_afc_teams
-    Standing.all_teams.each_with_index { |standing, index|
+    NflStandings::Standing.all_teams.each_with_index { |standing, index|
       puts "#{index}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties}} "
     }
   end
@@ -73,8 +76,8 @@ class CLI
     puts "---------- NFC Standings ----------"
     puts ""
     #change to all_nfc_teams
-    self.create_standings
-    Standing.all_teams.each_with_index { |standing, index|
+    create_standings
+    NflStandings::Standing.all_teams.each_with_index { |standing, index|
       puts "#{index}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties}} "
     }
   end

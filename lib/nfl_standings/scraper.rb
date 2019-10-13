@@ -1,19 +1,23 @@
-require_relative './lib/nfl_standings.rb'
+require 'nokogiri'
+require 'open-uri'
+require 'pry'
 
-class Scraper
+require_relative './standing.rb'
+
+class NflStandings::Scraper
 
   def get_page
     doc = Nokogiri::HTML(open("https://www.espn.com/nfl/standings"))
   end
 
-  def scrape_standings_index
+  def get_standings
     self.get_page.css(".ResponsiveTable").css(".hide-mobile").text
   end
 
   def create_standings
-    scrape_standings_index.each do |doc|
-      Standing.new
-      team_name
+    self.get_standings.each do |each_standing|
+      standing = NflStandings::Standing.new
+      standing.team_name = tea
       wins
       losses
       ties
@@ -22,4 +26,4 @@ class Scraper
 
 end
 
-Scraper.new.get_page
+NflStandings::Scraper.new.get_page

@@ -25,7 +25,7 @@ This got me this:
 
 doc.css(".ResponsiveTable").css(".hide-mobile").css("a").text
 
-OR 
+OR
 
 doc.css(".ResponsiveTable").css(".hide-mobile").text (provides the same thing)
 
@@ -81,3 +81,22 @@ The ties of an individual team:
 
 doc.css(".Table__TD").css(".stat-cell")[2].text
 
+
+----------------------------------------------------------
+
+
+def team_name
+  @team_name = doc.css(".ResponsiveTable").css(".hide-mobile").css("a").text
+end
+
+def wins
+  @wins = doc.css(".Table__TD").css(".stat-cell")[0].text
+end
+
+def losses
+  @losses = doc.css(".Table__TD").css(".stat-cell")[1].text
+end
+
+def ties
+  @ties = doc.css(".Table__TD").css(".stat-cell")[2].text
+end
