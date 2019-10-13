@@ -54,11 +54,6 @@ pry(#<Scraper>)> doc.css(".ResponsiveTable").css(".hide-mobile").css("a")[0].tex
 
 
 
-Wins (Possible Selectors):
-
-".Table_TD", ".stat-cell"
-
-
 
 
 --------------------------------------------------------
@@ -76,13 +71,13 @@ doc.css(".ResponsiveTable").css(".hide-mobile").css("a").first.text
 
 The wins of an individual team:
 
-
+doc.css(".Table__TD").css(".stat-cell").first.text
 
 The losses of an individual team:
 
-
+doc.css(".Table__TD").css(".stat-cell")[1].text
 
 The ties of an individual team:
 
-
+doc.css(".Table__TD").css(".stat-cell")[2].text
 
