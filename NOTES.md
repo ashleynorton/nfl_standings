@@ -13,3 +13,36 @@ User types '1' or '2'...a list of the teams (in alphabetical order) display with
 2. Buffalo Bills -- Wins: 3 Losses: 1 Ties: 0
 
 Choose a different conference or type 'exit'.
+
+SCRAPING:
+
+The section with all of the information is listed under the class (".ResponsiveTable")
+
+There are 2...one for AFC and one for NFC  spelled out listed under class (".Table_Title")
+
+
+This got me this:
+doc.css(".ResponsiveTable").css(".hide-mobile").css("a").text
+=> "New England PatriotsBuffalo BillsNew York JetsMiami DolphinsBaltimore RavensCleveland BrownsPittsburgh SteelersCincinnati BengalsHouston TexansIndianapolisColtsJacksonville JaguarsTennessee TitansKansas City ChiefsOakland RaidersLos Angeles ChargersDenver BroncosPhiladelphia EaglesDallas CowboysNew York GiantsWashington RedskinsGreen Bay PackersDetroit LionsChicago BearsMinnesota VikingsNew Orleans SaintsCarolina PanthersTampa Bay BuccaneersAtlanta FalconsSan Francisco 49ersSeattle SeahawksLos Angeles RamsArizona Cardinals"
+
+This got me this:
+
+pry(#<Scraper>)> doc.css(".ResponsiveTable").css("a")[0].text
+=> ""
+[4] pry(#<Scraper>)> doc.css(".ResponsiveTable").css("a")[1].text
+=> "NE"
+[5] pry(#<Scraper>)> doc.css(".ResponsiveTable").css("a")[2].text
+=> "New England Patriots"
+
+
+This got me this:
+
+pry(#<Scraper>)> doc.css(".ResponsiveTable").css(".hide-mobile").css("a")[0].text
+=> "New England Patriots"
+[8] pry(#<Scraper>)> doc.css(".ResponsiveTable").css(".hide-mobile").css("a")[1].text
+=> "Buffalo Bills"
+[9] pry(#<Scraper>)> doc.css(".ResponsiveTable").css(".hide-mobile").css("a")[4].text
+=> "Baltimore Ravens"
+[10] pry(#<Scraper>)> doc.css(".ResponsiveTable").css(".hide-mobile").css("a")[5].text
+=> "Cleveland Browns"
+
