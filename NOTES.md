@@ -65,6 +65,8 @@ The collection of teams:
 
 doc.css(".ResponsiveTable").css(".hide-mobile").text
 
+#doc.css(".ResponsiveTable").css(".hide-mobile").css("a").text
+
 The name of an individual team:
 
 doc.css(".ResponsiveTable").css(".hide-mobile").css("a").first.text
