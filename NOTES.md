@@ -27,6 +27,10 @@ doc.css(".ResponsiveTable").css(".hide-mobile").css("a").text
 
 OR
 
+doc.css(".ResponsiveTable").css(".Table__TD").css(".hide-mobile").css(".AnchorLink").text
+
+OR
+
 doc.css(".ResponsiveTable").css(".hide-mobile").text (provides the same thing)
 
 => "New England PatriotsBuffalo BillsNew York JetsMiami DolphinsBaltimore RavensCleveland BrownsPittsburgh SteelersCincinnati BengalsHouston TexansIndianapolisColtsJacksonville JaguarsTennessee TitansKansas City ChiefsOakland RaidersLos Angeles ChargersDenver BroncosPhiladelphia EaglesDallas CowboysNew York GiantsWashington RedskinsGreen Bay PackersDetroit LionsChicago BearsMinnesota VikingsNew Orleans SaintsCarolina PanthersTampa Bay BuccaneersAtlanta FalconsSan Francisco 49ersSeattle SeahawksLos Angeles RamsArizona Cardinals"
@@ -54,7 +58,7 @@ pry(#<Scraper>)> doc.css(".ResponsiveTable").css(".hide-mobile").css("a")[0].tex
 
 
 
-
+doc.css(".ResponsiveTable").css(".hide-mobile").css("a").first.text
 
 --------------------------------------------------------
 The page itself:
@@ -102,3 +106,11 @@ end
 def ties
   @ties = doc.css(".Table__TD").css(".stat-cell")[2].text
 end
+
+
+
+===========================================================
+
+1. Figure out way to print more than one standing
+2. Create method that somehow separates the all_nfl_teams_standings into half to create 1-16 for all_afc_teams_standings and 17-32 for all_nfc_teams_standings
+3. Fix the cli when you type exit so that it doesn't show the "error" message and just shows the goodbye message.
