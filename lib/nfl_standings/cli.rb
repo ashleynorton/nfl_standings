@@ -27,9 +27,7 @@ class NflStandings::CLI
       if input.to_i == 1
         #print_all_standings
         @all_nfl_teams = NflStandings::Standing.all_nfl_teams_standings
-        @all_nfl_teams.each.with_index(1) do |standing, i|
-          puts "#{i}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties} "
-        end
+        @all_nfl_teams
       elsif input.to_i == 2
         #print_afc_standings
         @all_afc_teams = NflStandings::Standing.all_afc_teams_standings
