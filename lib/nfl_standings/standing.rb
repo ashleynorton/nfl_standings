@@ -59,12 +59,18 @@ class NflStandings::Standing
 
     @team_name = @@doc.css(".ResponsiveTable").css(".hide-mobile").css("a").map do |anchor| anchor.text end
     @scores = @@doc.css("table:not(.Table--fixed-left)").css(".Table__TR").css("tr:not(.Table__sub-header)").map do |td| td.text end
-    @team_name.each.with_index(1) do |team, index|
-      @scores.each do |i|
-        puts "#{index}. #{team} -- Wins: #{i[0]} Losses: #{i[1]} Ties: #{i[2]}"
-      end
+    #@team_name.each.with_index(1) do |team, index|
+      #@scores.each do |i|
+        #puts "#{index}. #{team} -- Wins: #{i[0]} Losses: #{i[1]} Ties: #{i[2]}"
+      #end
+    #end
+    @team_name.zip @scores do |items|
+      team = items[0]
+      wins = items[1][0]
+      losses = items[1][1]
+      ties = items[1][2]
+      puts "1. #{team} -- Wins: #{wins} Losses: #{losses} Ties: #{ties}"
     end
-
   end
 
   #def self.wins
