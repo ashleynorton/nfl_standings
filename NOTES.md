@@ -651,7 +651,7 @@ doc.css("table:not(.Table--fixed-left)").css(".Table__TR").css("tr:not(.Table__s
 
 
 //GIVES ME AN ARRAY OF EVERY TEAMS SCORES
-scores(array) = doc.css("table:not(.Table--fixed-left)").css(".Table__TR").css("tr:not(.Table__sub-header)").map do |td| td.text end
+scores(array) = @@doc.css("table:not(.Table--fixed-left)").css(".Table__TR").css("tr:not(.Table__sub-header)").map do |td| td.text end
 //GIVES ME AN INDIVIDUAL TEAM'S SCORE
 individual_scores = scores[0].split("")
 //
@@ -713,4 +713,10 @@ def self.scrape_espn
   standing.ties = doc.css(".Table__TD").css(".stat-cell")[2].text
 
   standing
+end
+
+
+
+@scores.each.with_index(1) do |wins, losses, ties, index|
+  puts "#{index}. Wins: #{wins[0]} Losses: #{losses[1]} Ties: #{ties} "
 end

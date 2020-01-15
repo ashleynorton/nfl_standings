@@ -1,4 +1,5 @@
 class NflStandings::CLI
+  #test commit
 
   def call
     menu
@@ -31,15 +32,11 @@ class NflStandings::CLI
       elsif input.to_i == 2
         #print_afc_standings
         @all_afc_teams = NflStandings::Standing.all_afc_teams_standings
-        @all_afc_teams.each.with_index(1) do |standing, i|
-          puts "#{i}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties} "
-        end
+        @all_afc_teams
       elsif input.to_i == 3
         #print_nfc_standings
         @all_nfc_teams = NflStandings::Standing.all_nfc_teams_standings
-        @all_nfc_teams.each.with_index(1) do |standing, i|
-          puts "#{i}. #{standing.team_name} -- Wins: #{standing.wins} Losses: #{standing.losses} Ties: #{standing.ties} "
-        end
+        @all_nfc_teams
       elsif input == "menu"
         menu
       else
