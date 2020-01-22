@@ -8,19 +8,12 @@ class NflStandings::Standing
 
 
 
-  def self.scrape_espn
-
-    #binding.pry
-
-    self.cli
-  end
-
-  def self.split_array(arr)
+  def self.split_array(arr, num1, num2)
     ultimate_arr = []
 
-    i = 0
+    i = num1
 
-    while i < 32
+    while i < num2
       new_arr = arr.shift(12)
       ultimate_arr << new_arr
       i += 1
@@ -28,13 +21,50 @@ class NflStandings::Standing
     ultimate_arr
   end
 
-  def self.cli
+  def self.all
+    @all_stats = @@doc.css("table:not(.Table--fixed-left)").css(".Table__TR[data-idx]").css(".stat-cell").map do |td| td.text end
 
-    @@stats = @@doc.css("table:not(.Table--fixed-left)").css(".Table__TR[data-idx]").css(".stat-cell").map do |td| td.text end
-    @@split_stats = self.split_array(@@stats)
-
-    @nested_array = @@team_name.zip @@split_stats
+    @split_stats = self.split_array(@all_stats, 0, 32)
     #binding.pry
+    @nested_array = @@team_name.zip @split_stats
+    #binding.pry
+
+    @flattened_array = @nested_array.map {|elem| elem.flatten }
+
+    @flattened_array.map do |items|
+      team = items[0]
+      wins = items[1]
+      losses = items[2]
+      ties = items[3]
+      puts "#{team} --- Wins: #{wins} Losses: #{losses} Ties: #{ties}"
+    end
+  end
+
+  def self.afc
+    @afc_stats = @@doc.css("table:not(.Table--fixed-left)").css(".Table__TR[data-idx]").css(".stat-cell").map do |td| td.text end
+
+    @split_stats = self.split_array(@afc_stats, 0, 16)
+
+    @nested_array = @@team_name.slice(0..15).zip @split_stats
+
+    @flattened_array = @nested_array.map {|elem| elem.flatten }
+
+    @flattened_array.map do |items|
+      team = items[0]
+      wins = items[1]
+      losses = items[2]
+      ties = items[3]
+      puts "#{team} --- Wins: #{wins} Losses: #{losses} Ties: #{ties}"
+    end
+  end
+
+  def self.nfc
+    @nfc_stats = @@doc.css("table:not(.Table--fixed-left)").css(".Table__TR[data-idx]").css(".stat-cell").map do |td| td.text end
+
+    @split_stats = self.split_array(@nfc_stats, 16, 32)
+    binding.pry
+    @nested_array = @@team_name.slice(16..32).zip @split_stats
+
 
     @flattened_array = @nested_array.map {|elem| elem.flatten }
 
@@ -53,9 +83,7 @@ class NflStandings::Standing
     puts "---------- All NFL Team Standings ----------"
     puts ""
 
-    @@all_standings = []
-
-    @@all_standings << self.scrape_espn
+    self.all
 
   end
 
@@ -65,9 +93,7 @@ class NflStandings::Standing
     puts "---------- AFC Standings ----------"
     puts ""
 
-    @@all_standings = []
-
-    @@all_standings << self.scrape_espn
+    self.afc
 
   end
 
@@ -77,9 +103,7 @@ class NflStandings::Standing
     puts "---------- NFC Standings ----------"
     puts ""
 
-    @@all_standings = []
-
-    @@all_standings << self.scrape_espn
+    self.nfc
 
   end
 
