@@ -1,13 +1,50 @@
+require_relative "standing.rb"
+
 class NflStandings::Scraper
-
-  attr_accessor :team, :wins, :losses, :ties
-
+#doc.css(".Table__TBODY")[0].children.css(".hide-mobile")[0].text
+#doc.css(".Table__Scroller .Table__TBODY", "tr.Table__TR Table__TR--sm Table__even").children[0].css(".stat-cell")
 
 #SCRAPED SITE
-  @@doc = Nokogiri::HTML(open("https://www.espn.com/nfl/standings"))
+doc = Nokogiri::HTML(open("https://www.espn.com/nfl/standings"))
 
+conference = ""
+team = ""
+doc.css(".Table__TBODY").each_with_index do |elem, index|
+  if index == 0
+    conference = "afc"
+  else
+    conference = "nfc"
+  end
+
+  var1 = elem.children[index]
+  if var1.css(".hide-mobile").length > 0
+    team = var1.css(".hide-mobile").text
+  end
+    var = doc.css(".Table__Scroller .Table__TBODY", "tr.Table__TR Table__TR--sm Table__even").children
+
+      #if item.length > 0
+
+
+      if var.css(".stat-cell").length > 0
+
+
+
+        wins = var.css(".stat-cell")[0].text
+        losses = var.css(".stat-cell")[1].text
+        ties = var.css(".stat-cell")[2].text
+        NflStandings::Standing.new(team, wins, losses, ties, conference)
+      end
+
+
+
+end
+  binding.pry
 #SCRAPED TEAM DIVISIONS
-  @@all_teams = @@doc.css(".ResponsiveTable").css(".hide-mobile").css("a").map do |anchor| anchor.text end
+#binding.pry
+  @@all_teams = @@doc.css(".ResponsiveTable").css(".hide-mobile").css("a").map do |anchor|
+    anchor.text
+
+  end
 
   @@afc_teams = @@all_teams.slice(0..15)
 
@@ -87,5 +124,5 @@ class NflStandings::Scraper
       puts "#{team} --- Wins: #{wins} Losses: #{losses} Ties: #{ties}"
     end
   end
-  
+
 end
