@@ -1,6 +1,7 @@
 class NflStandings::CLI
 
   def call
+    NflStandings::Scraper.get_all
     menu
     list_nfl_conferences
     goodbye
@@ -25,11 +26,11 @@ class NflStandings::CLI
       input = gets.strip.downcase
 
       if input.to_i == 1
-        @all_nfl_teams = NflStandings::Standing.all_nfl_teams_standings
+        get_standings(NflStandings::Standing.all)
       elsif input.to_i == 2
-        @all_afc_teams = NflStandings::Standing.all_afc_teams_standings
+        get_standings(NflStandings::Standing.get_afc)
       elsif input.to_i == 3
-        @all_nfc_teams = NflStandings::Standing.all_nfc_teams_standings
+        get_standings(NflStandings::Standing.get_nfc)
       elsif input == "menu"
         menu
       elsif
@@ -39,9 +40,30 @@ class NflStandings::CLI
     end
   end
 
+  def get_standings(teams)
+    teams.each do |standing|
+      print_standings(standing)
+    end
+  end
+
+  def print_standings(standing)
+    puts ""
+    puts ""
+    puts "Team:   #{standing.team}"
+    puts ""
+    puts "Wins:   #{standing.wins}"
+    puts ""
+    puts "Losses: #{standing.losses}"
+    puts ""
+    puts "Ties:   #{standing.ties}"
+    puts ""
+  end
+
   def goodbye
     puts ""
     puts "Check back tomorrow for the latest updates!"
   end
+
+
 
 end
