@@ -5,13 +5,15 @@ class NflStandings::Standing
   @@all = []
 
   def initialize(team, wins, losses, ties, conference)
-  
     @team = team
     @wins = wins
     @losses = losses
     @ties = ties
     @conference = conference
+    self.save
+  end
 
+  def save
     @@all << self
   end
 
@@ -19,32 +21,17 @@ class NflStandings::Standing
     @@all
   end
 
-  # def self.all_nfl_teams_standings
-  #   puts ""
-  #   puts "---------- All NFL Team Standings ----------"
-  #   puts ""
-  #
-  #   NflStandings::Scraper.all
-  #
-  # end
-  #
-  # def self.all_afc_teams_standings
-  #   puts ""
-  #   puts "---------- AFC Standings ----------"
-  #   puts ""
-  #
-  #   NflStandings::Scraper.afc
-  #
-  # end
-  #
-  # def self.all_nfc_teams_standings
-  #   puts ""
-  #   puts "---------- NFC Standings ----------"
-  #   puts ""
-  #
-  #   NflStandings::Scraper.nfc
-  #
-  # end
 
+  def self.get_afc
+    self.all.select do |team|
+      team.conference == "AFC"
+    end
+  end
+
+  def self.get_nfc
+    self.all.select do |team|
+      team.conference == "NFC"
+    end
+  end
 
 end
