@@ -16,7 +16,6 @@ class NflStandings::CLI
     puts "3. National Football Conference Standings (NFC)"
   end
 
-
   def list_nfl_conferences
     input = nil
     while input != "exit"
@@ -63,7 +62,5 @@ class NflStandings::CLI
     puts ""
     puts "Check back tomorrow for the latest updates!"
   end
-
-
-
+  
 end
