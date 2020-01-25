@@ -1,8 +1,6 @@
 # NflStandings
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nfl_standings`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+The NflStandings gem will give you the latest team standings for the regular season. Whether you want to see all teams, just the AFC, or just the NFC team stats, you will be able to check the wins, losses, and ties for the current NFL season!
 
 ## Installation
 
