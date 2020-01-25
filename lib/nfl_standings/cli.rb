@@ -4,7 +4,6 @@ class NflStandings::CLI
     NflStandings::Scraper.get_all
     menu
     list_nfl_conferences
-    goodbye
   end
 
   def menu
@@ -32,9 +31,11 @@ class NflStandings::CLI
         get_standings(NflStandings::Standing.get_nfc)
       elsif input == "menu"
         menu
-      elsif
+      elsif input == "exit"
+        goodbye
+      else
         puts ""
-        puts "That's not an option. Type menu to return to the menu or type exit."
+        puts "That's not an option."
       end
     end
   end
@@ -61,6 +62,7 @@ class NflStandings::CLI
   def goodbye
     puts ""
     puts "Check back tomorrow for the latest updates!"
+    puts ""
   end
-  
+
 end
